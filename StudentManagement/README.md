@@ -73,6 +73,3 @@ Global Değişkenler: Sınıf bilgilerinin takibi
 
 - Katkıda Bulunma
 Katkıda bulunmak isterseniz, lütfen fork işlemi yapıp pull request gönderin.
-
-- Lisans
-Bu proje MIT lisansı altında lisanslanmıştır.
