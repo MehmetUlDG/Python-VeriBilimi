@@ -1,7 +1,7 @@
 # 1. Değişkenler ve Veri Tipleri
 sinif_adi= "11-C"
 mevcut_ogrenci_sayisi=0
-ortalama_basari_puanı=0.0
+ortalama_basari_puani=0.0
 sinif_aktif=True
 
 # 2. Öğrenci Bilgileri (dict ve list)
@@ -9,98 +9,103 @@ ogrenciler=[]
 
 # 3. Operatörler ve String İşlemleri
 def ogrenci_ekle():
-   global mevcut_ogrenci_sayisi,ortalama_basari_puanı
+   global mevcut_ogrenci_sayisi,ortalama_basari_puani
 
-   isim=input("Lütfen isminizi giriniz: ").strip().upper()
-   yas=int(input("Lütfen yaşınızı giriniz: "))
-   notu=int(input("Lütfen puanınızı giriniz: ")) 
+   isim =input("Lütfen isminizi giriniz: ").strip().upper()
+   yas =int(input("Lütfen yaşınızı giriniz: "))
+   notu =int(input("Lütfen puanınızı giriniz: ")) 
 
 # Geçti/Kaldı Kontrolu
    durum ="Geçti" if notu>=60 else "Kaldı"
    print(f"{isim}  {durum}!")
 
-   yeni_ogrenci= {
+   yeni_ogrenci = {
      "isim":isim,
      "yas":yas,
      "not":notu
    }
     
-ogrenciler.append(yeni_ogrenci)
-mevcut_ogrenci_sayisi+=1
-toplam_not=sum(ogrenci["not"] for ogrenci in ogrenciler)
-ortalama_basari_puanı=toplam_not/mevcut_ogrenci_sayisi
+   ogrenciler.append(yeni_ogrenci)
+   mevcut_ogrenci_sayisi+=1
+   toplam_not=sum(ogrenci["not"] for ogrenci in ogrenciler)
+   ortalama_basari_puani=toplam_not/mevcut_ogrenci_sayisi
 
-print(f"{isim} öğrenci başarı ile eklendi.")
+   print(f"{isim} öğrenci başarı ile eklendi.")
 
 
-
+# 4. Öğrenci Listeleme 
 def ogrenci_listele():
-  if not ogrenciler:
-    print("Kayıtlı öğrenci yok!")
-    return
+   if not ogrenciler:
+     print("Kayıtlı öğrenci yok!")
+     return
   
-  print("\n==Ögrenci Listesi==")
-for i,ogrenci in enumerate(ogrenciler,1):
-  durum= "Geçti" if ogrenci["not"]>=60 else "Kaldı"
+   print("\n==Ögrenci Listesi==")
+   for i,ogrenci in enumerate(ogrenciler,1):
+        durum= "Geçti" if ogrenci["not"]>=60 else "Kaldı"
+        print(f" {ogrenci["isim"]} adlı öğrenci {ogrenci["yas"]} yaşındadır.Notu: {ogrenci["notu"]} vaziyet: {durum}")
 
-print(f"{isim} adlı öğrenci {yas} yaşındadır.Notu: {notu} vaziyet: {durum}")
 
+# 5. Öğrenci Arama 
 def ogrenci_ara():
+   
+  arama_terimi = input("Hangi öğrenciyi arıyorsunuz").strip().upper() 
+  bulunan_ogrenciler=[]
+
+  for ogrenci in ogrenciler:
+    if arama_terimi in ogrenci["isim"]:
+     bulunan_ogrenciler.append(ogrenci)
+
+  if bulunan_ogrenciler: 
+     print(f"{arama_terimi} ile bağıntılı sonuçlar")
+  for i,ogrenci in enumerate(bulunan_ogrenciler,1):
+     durum="Geçti" if ogrenci["not"] >= 60 else "Kaldı"
+
+     print(f"{i}. ad: {ogrenci["isim"]} yas: {ogrenci["yas"]} not: {ogrenci["notu"]} durum: {durum}")
+
   if not ogrenciler:
-   print("Öğrenci yok!")
-  return  
-  
-arama_terimi=input("Hangi öğrenciyi arıyorsunuz").strip().upper() 
-bulunan_ogrenciler=[]
-
-for ogrenci in ogrenciler:
- if arama_terimi in ogrenci["isim"]:
-   bulunan_ogrenciler.append(ogrenci)
-
-if bulunan_ogrenciler: 
-  print(f"{arama_terimi} ile bağıntılı sonuçlar")
-for i,ogrenci in enumerate(bulunan_ogrenciler,1):
-  durum="Geçti" if ogrenci["not"] >= 60 else "Kaldı"
-
-  print(f"{i}. ad: {isim} yas: {yas} not: {notu} durum: {durum}")
-
-else:
-  print("ogrenci bulunamadı")
+    print("Öğrenci yok!")
+    return
 
 
+# 6. İstatistik Gösterme
 def istatistikleri_goster():
   
   if not ogrenciler:
     print("Öğrenci yok veya bulunamadı!")
  
-notlar=[ogrenci["not"] for ogrenci in ogrenciler ]
-ort=sum(notlar)/len(notlar)
-en_yuksek=max(notlar)
-en_dusuk=min(notlar)
+  notlar=[ogrenci["not"] for ogrenci in ogrenciler ]
+  ort=sum(notlar)/len(notlar)
+  en_yuksek=max(notlar)
+  en_dusuk=min(notlar)
 
-gecen_ogrenciler=[ogrenci["isim"] for ogrenci in ogrenciler if ogrenci["not"]>=60]
-kareler=[notu**2 for notu in notlar] 
+  gecen_ogrenciler=[ogrenci["isim"] for ogrenci in ogrenciler if ogrenci["not"]>=60]
+  kareler=[notu**2 for notu in notlar] 
 
-print("\n--- İstatistikler ---")
-print(f"Sınıf Adı: {sinif_adi}")
-print(f"Öğrenci Sayısı: {mevcut_ogrenci_sayisi}")
-print(f"Ortalama Başarı Puanı: {ortalama_basari_puani:.2f}")
-print(f"Sınıf Durumu: {'Aktif' if sinif_aktif else 'Pasif'}")
-print(f"En Yüksek Not: {en_yuksek}")
-print(f"En Düşük Not: {en_dusuk}")
-print(f"Geçen Öğrenci Sayısı: {len(gecen_ogrenciler)}")
-print(f"Geçen Öğrenciler: {', '.join(gecen_ogrenciler)}")
-print(f"Not Kareleri: {not_kareleri}")
+  print("\n--- İstatistikler ---")
+  print(f"Sınıf Adı: {sinif_adi}")
+  print(f"Öğrenci Sayısı: {mevcut_ogrenci_sayisi}")
+  print(f"Ortalama Başarı Puanı: {ortalama_basari_puani:.2f}")
+  print(f"Sınıf Durumu: {'Aktif' if sinif_aktif else 'Pasif'}")
+  print(f"En Yüksek Not: {en_yuksek}")
+  print(f"En Düşük Not: {en_dusuk}")
+  print(f"Geçen Öğrenci Sayısı: {len(gecen_ogrenciler)}")
+  print(f"Geçen Öğrenciler: {', '.join(gecen_ogrenciler)}")
+  print(f"Not Kareleri: {kareler}")
 
 
+
+# 7. Benzersiz İsimler
 def benzersiz_isimler():
   if not ogrenciler:
     print("Öğrenci yok veya bulunamadı!")
   return
 
-isimler=set(ogrenci["isim"] for ogrenci in ogrenciler )
-print(f"\nBenzersiz İsimler: {isimler} Toplam Adedi {len(isimler)}")
+# Set içerisine tanımlama 
+  isimler=set(ogrenci["isim"] for ogrenci in ogrenciler )
+  print(f"\nBenzersiz İsimler: {isimler} Toplam Adedi {len(isimler)}")
 
+
+# Main Fonksiyonu
 def main(): 
  while True :
 
