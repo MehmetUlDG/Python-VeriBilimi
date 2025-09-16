@@ -60,7 +60,7 @@ def ogrenci_ara():
   for i,ogrenci in enumerate(bulunan_ogrenciler,1):
      durum="Geçti" if ogrenci["not"] >= 60 else "Kaldı"
 
-     print(f"{i}. ad: {ogrenci["isim"]} yas: {ogrenci["yas"]} not: {ogrenci["notu"]} durum: {durum}")
+     print(f"{i}. ad: {ogrenci[ "isim" ]} yas: {ogrenci["yas"]} not: {ogrenci["notu"]} durum: {durum}")
 
   if not ogrenciler:
     print("Öğrenci yok!")
