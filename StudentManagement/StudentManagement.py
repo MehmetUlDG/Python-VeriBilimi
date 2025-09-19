@@ -9,28 +9,28 @@ ogrenciler=[]
 
 # 3. Operatörler ve String İşlemleri
 def ogrenci_ekle():
-   global mevcut_ogrenci_sayisi,ortalama_basari_puani
+    global mevcut_ogrenci_sayisi,ortalama_basari_puani
 
-   isim =input("Lütfen isminizi giriniz: ").strip().upper()
-   yas =int(input("Lütfen yaşınızı giriniz: "))
-   notu =int(input("Lütfen puanınızı giriniz: ")) 
+    isim =input("Lütfen isminizi giriniz: ").strip().upper()
+    yas =int(input("Lütfen yaşınızı giriniz: "))
+    notu =int(input("Lütfen puanınızı giriniz: ")) 
 
-# Geçti/Kaldı Kontrolu
-   durum ="Geçti" if notu>=60 else "Kaldı"
-   print(f"{isim}  {durum}!")
+      # Geçti/Kaldı Kontrolu
+    durum ="Geçti" if notu>=60 else "Kaldı"
+    print(f"{isim}  {durum}!")
 
-   yeni_ogrenci = {
-     "isim":isim,
-     "yas":yas,
-     "not":notu
-   }
+    yeni_ogrenci = {
+       "isim":isim,
+       "yas":yas,
+       "not":notu
+        }
     
-   ogrenciler.append(yeni_ogrenci)
-   mevcut_ogrenci_sayisi+=1
-   toplam_not=sum(ogrenci["not"] for ogrenci in ogrenciler)
-   ortalama_basari_puani=toplam_not/mevcut_ogrenci_sayisi
+    ogrenciler.append(yeni_ogrenci)
+    mevcut_ogrenci_sayisi+=1
+    toplam_not=sum(ogrenci["not"] for ogrenci in ogrenciler)
+    ortalama_basari_puani=toplam_not/mevcut_ogrenci_sayisi
 
-   print(f"{isim} öğrenci başarı ile eklendi.")
+    print(f"{isim} öğrenci başarı ile eklendi.")
 
 
 # 4. Öğrenci Listeleme 
@@ -42,7 +42,7 @@ def ogrenci_listele():
    print("\n==Ögrenci Listesi==")
    for i,ogrenci in enumerate(ogrenciler,1):
         durum= "Geçti" if ogrenci["not"]>=60 else "Kaldı"
-        print(f" {ogrenci["isim"]} adlı öğrenci {ogrenci["yas"]} yaşındadır.Notu: {ogrenci["notu"]} vaziyet: {durum}")
+        print(f" {ogrenci['isim']} adlı öğrenci {ogrenci['yas']} yaşındadır.Notu: {ogrenci['not']} vaziyet: {durum}")
 
 
 # 5. Öğrenci Arama 
@@ -60,7 +60,7 @@ def ogrenci_ara():
   for i,ogrenci in enumerate(bulunan_ogrenciler,1):
      durum="Geçti" if ogrenci["not"] >= 60 else "Kaldı"
 
-     print(f"{i}. ad: {ogrenci[ "isim" ]} yas: {ogrenci["yas"]} not: {ogrenci["notu"]} durum: {durum}")
+     print(f"{i}. ad: {ogrenci[ 'isim' ]} yas: {ogrenci['yas']} not: {ogrenci['not']} durum: {durum}")
 
   if not ogrenciler:
     print("Öğrenci yok!")
@@ -96,18 +96,19 @@ def istatistikleri_goster():
 
 # 7. Benzersiz İsimler
 def benzersiz_isimler():
-  if not ogrenciler:
-    print("Öğrenci yok veya bulunamadı!")
-  return
+    if not ogrenciler:
+        print("Öğrenci yok veya bulunamadı!")
+        return
+    # Set içerisine tanımlama
+    else:
+     isimler=set(ogrenci["isim"] for ogrenci in ogrenciler )
+     print(f"\nBenzersiz İsimler: {isimler} Toplam Adedi {len(isimler)}")
 
-# Set içerisine tanımlama 
-  isimler=set(ogrenci["isim"] for ogrenci in ogrenciler )
-  print(f"\nBenzersiz İsimler: {isimler} Toplam Adedi {len(isimler)}")
 
 
 # Main Fonksiyonu
 def main(): 
- while True :
+ while True:
 
         print("\n--- Öğrenci Yönetim Sistemi ---")
         print("1. Öğrenci Ekle")
@@ -143,5 +144,5 @@ def main():
          continue
 
 
-        if __name__=="__main__":
+if __name__=="__main__":
          main()
