@@ -33,7 +33,7 @@ Sanal ortam oluştur (conda veya venv önerilir):
 
 Gereksinimleri yükle:
 
-     pip install (pandas, numpy, matplotlib, seaborn, jupyterlab)
+     pip install (pandas, numpy, matplotlib, seaborn, selenium,jupyterlab)
 
 
 ### Kullanım 
@@ -44,7 +44,9 @@ Jupyter Notebook'u başlat:
 ####  veya
     jupyter lab
 
-Pandas_Exercise.ipynb dosyasını aç ve hücreleri sırayla çalıştır.
+web_scraping.ipynb dosyasını aç ve hücreleri sırayla çalıştır.
+
+Sahibinden_data_analysis.ipynb dosyasını aç ve hücreleri sırası ile çalıştır.
 
 Veri yolu/namespaces farklıysa notebook içindeki data_path değişkenini güncelle.
 
@@ -89,4 +91,5 @@ seçenek sunacağını gösteriyor.
 kelimelerinden hemen sonra ne geliyor? "Sahibinden".Bu kelime boş bir anlam ifade etmiyor
 çünkü bu piyasada mülk sahipleri komisyon vermemek için kendileri ilan vermeyi seviyor.
 Ancak “emlaktan” kelimesinin yüzdesi de oldukça yüksek. Yani piyasa %50-%50 bölünmüş
+
 durumda. 
